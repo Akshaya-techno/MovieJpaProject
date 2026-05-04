@@ -8,18 +8,23 @@
 // Write your code here
 
 package com.example.movie.model;
+
 import javax.persistence.*;
+
 @Entity
-@Table(name = "MOVIELIST")
+@Table(name = "movielist")
 public class Movie {
     @Id
-    @Column(name = "MOVIEID")
+    @Column(name = "movieId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
-    @Column(name = "MOVIENAME")
+    @Column(name = "movieName")
     private String movieName;
-    @Column(name = "LEADACTOR")
+    @Column(name = "leadActor")
     private String leadActor;
+
+    public Movie() {
+    }
 
     public Movie(int movieId, String movieName, String leadActor) {
         this.movieId = movieId;
