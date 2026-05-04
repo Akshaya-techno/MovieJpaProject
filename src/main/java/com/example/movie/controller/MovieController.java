@@ -18,7 +18,7 @@ import com.example.movie.service.MovieJpaService;
 import java.util.*;
 
 @RestController
-class MovieController {
+public class MovieController {
     @Autowired
     private MovieJpaService movieJpaService;
 
