@@ -16,7 +16,6 @@ package com.example.movie.service;
 import com.example.movie.model.Movie;
 import com.example.movie.repository.*;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -29,10 +28,10 @@ public class MovieJpaService implements MovieRepository {
     @Autowired
     private MovieJpaRepository movieJpaRepository;
 
-
     @Override
     public List<Movie> MovieList() {
-        return movieJpaRepository.findAll();
+        List<Movie> movies =  movieJpaRepository.findAll();
+        return movies;
     }
 
     @Override
@@ -43,18 +42,18 @@ public class MovieJpaService implements MovieRepository {
 
     @Override
     public Movie getMovieById(int movieId) {
-        try{
+        try {
             Movie movie = movieJpaRepository.findById(movieId).get();
             return movie;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        
+
     }
 
     @Override
     public Movie updateMovie(int movieId, Movie movie) {
-        try{
+        try {
             Movie toUpdate = movieJpaRepository.findById(movieId).get();
 
             if (movie.getMovieName() != null) {
@@ -65,18 +64,18 @@ public class MovieJpaService implements MovieRepository {
             }
             movieJpaRepository.save(toUpdate);
             return toUpdate;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
     public void deleteMovie(int movieId) {
-        try{
+        try {
             movieJpaRepository.deleteById(movieId);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        
+
     }
 }
